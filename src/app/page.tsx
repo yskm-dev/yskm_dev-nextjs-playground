@@ -1,7 +1,9 @@
+import { getNotes } from "@/libs/microcms";
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 
-export default function Home() {
+export default async function Home() {
+  const {contents} = await getNotes({ limit: 5 });
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -60,7 +62,13 @@ export default function Home() {
             Documentation
           </a>
         </div>
+        {contents.map((note) => (
+          <div key={note.id} className={styles.note}>
+            <h2>{note.title}</h2>
+            <p>{note.content}</p>
+          </div>
+        ))}
       </main>
     </div>
-  );
+  );``
 }
