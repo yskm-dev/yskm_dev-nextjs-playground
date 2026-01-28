@@ -1,4 +1,5 @@
 'use client';
+import { Nav } from "@/components/Nav";
 import { EXTERNAL_LINKS } from "@/constants/links";
 import IconArrow from "@/svg/icon_arrow.svg";
 import styles from "./Footer.module.scss";
@@ -31,6 +32,7 @@ export function Footer() {
       </ul>
     </div>
     <div className={styles.links}>
+      <Nav label="フッターナビゲーション" isHeader={false} />
     </div>
   </div>
   <p className={styles.copyright}>© 2026 yskm_dev</p>

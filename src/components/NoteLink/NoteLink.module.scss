@@ -1,0 +1,79 @@
+
+@use "@/styles/variables" as var;
+@use "@/styles/extension" as *;
+
+.link {
+  position: relative;
+  display: flex;
+  gap: var(--margin-m);
+  justify-content: flex-start;
+  width: 100%;
+  padding: var(--margin-m) var(--margin-m) var(--margin-m)
+    calc(var(--margin-m) + rem(56 * 0.5));
+  border: rem(1) solid var(--color-border);
+  border-radius: rem(8);
+  @include mq-lt("md") {
+    padding: var(--margin-m) var(--margin-m) var(--margin-m)
+      calc(var(--margin-m) + rem(40 * 0.725));
+  }
+}
+
+.icon {
+  position: absolute;
+  top: rem(56 * 0.25);
+  left: rem(56 * -0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: rem(56);
+  height: rem(56);
+  font-size: var(--font-size-heading-1);
+  line-height: 1;
+  background-color: var(--color-secondary);
+  border-radius: 50%;
+
+  @include mq-lt("md") {
+    top: rem(40 * 0.25);
+    left: rem(-40 * 0.325);
+    width: rem(40);
+    height: rem(40);
+    font-size: var(--font-size-heading-3);
+  }
+}
+
+.date {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: var(--font-size-small);
+  color: var(--color-secondary);
+}
+
+.title {
+  font-size: var(--font-size-heading-3);
+  font-weight: 500;
+}
+
+.tagWrapper {
+  display: flex;
+  gap: var(--margin-xs);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+}
+
+.tagHeader {
+  color: var(--color-secondary);
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--margin-xs);
+}
+
+.link:hover {
+  border-color: var(--color-primary);
+
+  .title {
+    color: var(--color-primary);
+  }
+}

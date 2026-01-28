@@ -1,3 +1,9 @@
 @use "variables" as var;
 @use "extension" as *;
 @use "foundation";
+
+.container {
+  max-width: calc(rem(640) + var(--margin-l) * 2);
+  padding: var(--margin-xxl) var(--margin-l) 0;
+  margin: auto;
+}

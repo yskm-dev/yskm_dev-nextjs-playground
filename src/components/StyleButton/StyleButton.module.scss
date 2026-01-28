@@ -1,0 +1,98 @@
+@use "@/styles/variables" as var;
+@use "@/styles/extension" as *;
+
+@keyframes rotateOut {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-90deg);
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    transform: rotate(90deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.styleButton {
+  position: relative;
+  display: flex;
+  gap: rem(var(--margin-xs));
+  align-items: center;
+  width: rem(48);
+  height: rem(48);
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+  background-color: var(--color-background);
+  border: none;
+  border: rem(1) solid var(--color-border);
+  border-radius: 50%;
+
+  &[data-state="light"] {
+    .light {
+      transform: rotate(0deg);
+    }
+
+    .dark {
+      transform: rotate(90deg);
+    }
+  }
+
+  &[data-state="dark"] {
+    .light {
+      transform: rotate(90deg);
+    }
+
+    .dark {
+      transform: rotate(0deg);
+    }
+  }
+
+  &.animating {
+    &[data-state="light"] {
+      .light {
+        animation: rotateIn 0.3s var.$ease-in-out-quart;
+      }
+
+      .dark {
+        animation: rotateOut 0.3s var.$ease-in-out-quart;
+      }
+    }
+
+    &[data-state="dark"] {
+      .light {
+        animation: rotateOut 0.3s var.$ease-in-out-quart;
+      }
+
+      .dark {
+        animation: rotateIn 0.3s var.$ease-in-out-quart;
+      }
+    }
+  }
+}
+
+.switch {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: rem(48);
+  height: rem(48);
+  margin: auto;
+  font-size: var(--font-size);
+  transform-origin: left bottom;
+}
+
+.icon {
+  font-size: var(--font-size-heading-3);
+}
