@@ -1,0 +1,26 @@
+@use "@/styles/variables" as var;
+@use "@/styles/extension" as *;
+
+.main {
+  width: 100%;
+  max-width: calc(rem(640) + var(--margin-l) * 2);
+  padding: 0 var(--margin-l);
+  margin: auto;
+}
+
+.title {
+  margin-block: var(--margin-l);
+  font-size: var(--font-size-heading-1);
+  font-weight: 600;
+  line-height: var(--line-height-heading-1);
+}
+
+.text {
+  display: flex;
+  gap: var(--margin-xs);
+  align-items: center;
+  margin-top: var(--margin-m);
+  font-size: var(--font-size-base);
+
+  --line-height-small: 1.7;
+}
