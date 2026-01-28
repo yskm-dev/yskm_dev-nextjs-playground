@@ -1,4 +1,5 @@
 import { NoteLink } from '@/components/NoteLink';
+import { Pagination } from '@/components/Pagination';
 import { getNotes } from '@/libs/microcms';
 import styles from './page.module.scss';
 
@@ -14,6 +15,11 @@ export default async function Notes() {
           </li>
         ))}
       </ul>
+      <Pagination
+        currentPage={1}
+        totalPages={contents.length}
+        path="/notes/page"
+      />
     </>
   );
 }

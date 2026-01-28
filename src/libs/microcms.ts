@@ -2,39 +2,39 @@ import {
   createClient,
   type MicroCMSListContent,
   type MicroCMSQueries,
-} from "microcms-js-sdk";
+} from 'microcms-js-sdk';
 
 export const client = createClient({
-  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN || "",
-  apiKey: process.env.MICROCMS_PRODUCTION_API_KEY || "",
+  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN || '',
+  apiKey: process.env.MICROCMS_PRODUCTION_API_KEY || '',
 });
 
-export type Tags = {
+export type Tag = {
   name: string;
   slug: string;
 } & MicroCMSListContent;
 
-export type Notes = {
+export type Note = {
   icon: string;
   title: string;
   content: string;
-  tags: Tags[];
+  tags: Tag[];
 } & MicroCMSListContent;
 
 export const getTags = async (queries?: MicroCMSQueries) => {
-  return await client.getList<Tags>({ endpoint: "tags", queries });
+  return await client.getList<Tag>({ endpoint: 'tags', queries });
 };
 
 export const getNotes = async (queries?: MicroCMSQueries) => {
-  return await client.getList<Notes>({ endpoint: "notes", queries });
+  return await client.getList<Note>({ endpoint: 'notes', queries });
 };
 
 export const getNotesDetail = async (
   contentId: string,
-  queries?: MicroCMSQueries,
+  queries?: MicroCMSQueries
 ) => {
-  return await client.getListDetail<Notes>({
-    endpoint: "notes",
+  return await client.getListDetail<Note>({
+    endpoint: 'notes',
     contentId,
     queries,
   });
