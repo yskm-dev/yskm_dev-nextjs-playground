@@ -1,0 +1,55 @@
+@use "@/styles/variables" as var;
+@use "@/styles/extension" as *;
+
+.pallet {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: rem(120);
+  height: rem(120);
+  padding: var(--margin-s) var(--margin-s);
+  font-weight: 600;
+
+  &[data-color="background"] {
+    background-color: var(--color-background);
+    border: 1px solid var(--color-text);
+  }
+
+  &[data-color="text"] {
+    color: var(--color-background);
+    background-color: var(--color-text);
+  }
+
+  &[data-color="border"] {
+    background-color: var(--color-border);
+  }
+
+  &[data-color="primary"] {
+    color: var(--color-background);
+    background-color: var(--color-primary);
+  }
+
+  &[data-color="secondary"] {
+    color: var(--color-background);
+    background-color: var(--color-secondary);
+  }
+}
+
+:global([data-theme="light"]) .pallet[data-color="primary"] {
+  color: var(--color-text);
+  background-color: var(--color-primary);
+}
+
+.colorName {
+  position: absolute;
+  top: var(--margin-s);
+  left: var(--margin-s);
+  font-size: var(--font-size-small);
+}
+
+.colorCode {
+  position: absolute;
+  right: var(--margin-s);
+  bottom: var(--margin-s);
+  font-size: var(--font-size-small);
+}

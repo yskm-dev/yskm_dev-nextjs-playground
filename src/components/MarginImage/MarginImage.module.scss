@@ -1,0 +1,50 @@
+@use "@/styles/variables" as var;
+@use "@/styles/extension" as *;
+
+.heading {
+  margin-top: var(--margin-l);
+  margin-bottom: var(--margin-m);
+  font-size: var(--font-size-heading-3);
+  font-weight: 600;
+  line-height: var(--line-height-heading-3);
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: var(--margin-l);
+  font-weight: 600;
+  color: var(--color-background);
+  background-color: var(--color-text);
+
+  &[data-size="xxl"] {
+    height: var(--margin-xxl);
+    font-weight: 600;
+  }
+
+  &[data-size="xl"] {
+    height: var(--margin-xl);
+  }
+
+  &[data-size="l"] {
+    height: var(--margin-l);
+  }
+
+  &[data-size="m"] {
+    height: var(--margin-m);
+  }
+
+  &[data-size="s"] {
+    height: var(--margin-s);
+  }
+
+  &[data-size="xs"] {
+    height: var(--margin-xs);
+  }
+
+  &[data-size="xxs"] {
+    height: var(--margin-xxs);
+  }
+}

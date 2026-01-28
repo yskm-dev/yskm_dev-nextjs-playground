@@ -1,0 +1,1 @@
+export { MarginImage } from './MarginImage';
