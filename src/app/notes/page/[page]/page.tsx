@@ -61,7 +61,6 @@ export default async function Notes({
       <Pagination
         currentPage={pageNumber}
         totalPages={totalPages}
-        offset={offset}
         path="/notes/page"
       />
     </>
