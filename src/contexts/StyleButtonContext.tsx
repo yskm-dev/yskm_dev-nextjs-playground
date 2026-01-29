@@ -2,25 +2,23 @@
 
 import { createContext, useContext } from 'react';
 
-// スタイルボタンのコンテキストの型定義
-interface StyleButtonContextValue {
-  currentStyle: 'light' | 'dark' | null;
-  setCurrentStyle: React.Dispatch<
-    React.SetStateAction<'light' | 'dark' | null>
-  >;
+// グローバルテーマ管理のコンテキストの型定義
+interface GlobalStyleContextValue {
+  currentTheme: 'light' | 'dark' | null;
+  setTheme: (theme: 'light' | 'dark') => void;
 }
 
-// スタイルボタンのコンテキストを作成
-export const StyleButtonContext = createContext<StyleButtonContextValue | null>(
+// グローバルテーマ管理のコンテキストを作成
+export const GlobalStyleContext = createContext<GlobalStyleContextValue | null>(
   null
 );
 
 // カスタムフックを用意
-export function useStyleButtonContext() {
-  const context = useContext(StyleButtonContext);
+export function useGlobalStyle() {
+  const context = useContext(GlobalStyleContext);
   if (!context) {
     throw new Error(
-      'StyleButton components must be used within a StyleButtonRoot'
+      'Global style components must be used within a GlobalStyleProvider'
     );
   }
   return context;
