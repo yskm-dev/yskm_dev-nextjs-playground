@@ -9,8 +9,9 @@ let clientInstance: ReturnType<typeof createClient> | null = null;
 
 function getClient() {
   if (!clientInstance) {
-    const serviceDomain = process.env.MICROCMS_SERVICE_DOMAIN;
-    const apiKey = process.env.MICROCMS_PRODUCTION_API_KEY;
+    // Cloudflareでの環境変数のフォールバック
+    const serviceDomain = process.env.MICROCMS_SERVICE_DOMAIN || 'bly5b8dqis';
+    const apiKey = process.env.MICROCMS_PRODUCTION_API_KEY || 'yGC5Rv81FntEKoG4R8PophDSLndJTW7fJF6L';
 
     if (!serviceDomain || !apiKey) {
       throw new Error(
