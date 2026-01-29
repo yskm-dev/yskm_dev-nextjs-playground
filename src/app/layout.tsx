@@ -1,5 +1,7 @@
+import { Drawer, DrawerRoot } from '@/components/Drawer';
 import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
+import { StyleButtonRoot } from '@/components/StyleButton';
 import '@/styles/globals.scss';
 import type { Metadata } from 'next';
 
@@ -14,27 +16,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" data-theme="light">
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const defaultStyle = localStorage.getItem('style') || 
-                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-                  document.documentElement.setAttribute('data-theme', defaultStyle);
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
-      </head>
+    <html lang="ja">
       <body>
-        <Header />
-        <main>
-          <div className="container">{children}</div>
-        </main>
+        {/* スタイルボタンのコンテキストプロバイダーでラップ */}
+        <StyleButtonRoot>
+          {/* ドロワーメニューのコンテキストプロバイダーでラップ */}
+          <DrawerRoot>
+            <Header />
+            <main>
+              <div className="container">{children}</div>
+            </main>
+            <Drawer />
+          </DrawerRoot>
+        </StyleButtonRoot>
         <Footer />
       </body>
     </html>

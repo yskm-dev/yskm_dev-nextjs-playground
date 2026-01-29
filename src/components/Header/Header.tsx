@@ -1,9 +1,13 @@
 'use client';
 import { Nav } from '@/components/Nav';
+import { useDrawerContext } from '@/contexts/DrawerContext';
 import { StyleButton } from '../StyleButton';
 import styles from './Header.module.scss';
 
 export function Header() {
+  // ドロワーメニューの開閉関数と参照を取得
+  const { open, dialogRef } = useDrawerContext();
+
   return (
     <div className={styles.header}>
       <header className={styles.header__inner}>
@@ -17,12 +21,14 @@ export function Header() {
             <Nav isHeader={true} />
           </div>
           <StyleButton />
+
           <button
             type="button"
             className={styles.menuButton}
             aria-label="メニューを開く"
-            aria-expanded="false"
+            aria-expanded={dialogRef.current?.open ? 'true' : 'false'} // ダイアログが開いているかどうかを示す
             aria-controls="drawer"
+            onClick={open} // DrawerContextのopen関数を呼び出してドロワーメニューを開く
           >
             <span></span>
             <span></span>

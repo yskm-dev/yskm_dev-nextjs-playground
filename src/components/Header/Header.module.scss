@@ -46,39 +46,40 @@
   font-weight: 600;
 }
 
+// .menuButton {
+//   display: none;
+// }
+// @include mq-lt("sm") {
+//   .nav {
+//     display: none;
+//   }
+
 .menuButton {
-  display: none;
-}
-@include mq-lt("sm") {
-  .nav {
-    display: none;
-  }
+  position: relative;
+  display: block;
+  width: rem(40);
+  height: rem(40);
+  background-color: var(--color-secondary);
+  border-radius: rem(4);
 
-  .menuButton {
-    position: relative;
+  span {
+    position: absolute;
+    inset: 0;
     display: block;
-    width: rem(40);
-    height: rem(40);
-    background-color: var(--color-secondary);
-    border-radius: rem(4);
+    width: rem(20);
+    height: rem(2);
+    margin: auto;
+    background-color: var(--color-background);
+    border-radius: rem(1);
 
-    span {
-      position: absolute;
-      inset: 0;
-      display: block;
-      width: rem(20);
-      height: rem(2);
-      margin: auto;
-      background-color: var(--color-background);
-      border-radius: rem(1);
+    &:first-child {
+      translate: 0 rem(-4);
+    }
 
-      &:first-child {
-        translate: 0 rem(-4);
-      }
-
-      &:last-child {
-        translate: 0 rem(4);
-      }
+    &:last-child {
+      translate: 0 rem(4);
     }
   }
 }
+
+// }

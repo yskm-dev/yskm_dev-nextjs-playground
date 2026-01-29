@@ -1,11 +1,30 @@
 'use client';
+import {
+  StyleButtonContext,
+  useStyleButtonContext,
+} from '@/contexts/StyleButtonContext';
 import { useCallback, useEffect, useState } from 'react';
 import styles from './StyleButton.module.scss';
 
-export function StyleButton() {
+export function StyleButtonRoot({ children }: { children: React.ReactNode }) {
   const [currentStyle, setCurrentStyle] = useState<'light' | 'dark' | null>(
     null
   );
+
+  const contextValue = {
+    currentStyle: currentStyle,
+    setCurrentStyle: setCurrentStyle,
+  };
+
+  return (
+    <StyleButtonContext.Provider value={contextValue}>
+      {children}
+    </StyleButtonContext.Provider>
+  );
+}
+
+export function StyleButton() {
+  const { currentStyle, setCurrentStyle } = useStyleButtonContext();
 
   useEffect(() => {
     // 初期スタイルの設定
@@ -21,7 +40,7 @@ export function StyleButton() {
     document.documentElement.setAttribute('data-theme', defaultStyle);
 
     return () => {};
-  }, [setCurrentStyle]);
+  }, [currentStyle]);
 
   const toggleStyle: React.MouseEventHandler<HTMLButtonElement> = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -32,9 +51,9 @@ export function StyleButton() {
         currentStyle === 'light' ? 'dark' : 'light';
       setCurrentStyle(newStyle);
       localStorage.setItem('style', newStyle);
-      document.documentElement.setAttribute('data-theme', newStyle);
       target.setAttribute('data-state', newStyle);
       document?.dispatchEvent(new Event('themeChange'));
+      document.documentElement.setAttribute('data-theme', newStyle);
 
       requestAnimationFrame(() => {
         target.classList.add(styles.animating);
