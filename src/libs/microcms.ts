@@ -26,8 +26,6 @@ function getClient() {
   return clientInstance;
 }
 
-export const client = getClient();
-
 export type Tag = {
   name: string;
   slug: string;
