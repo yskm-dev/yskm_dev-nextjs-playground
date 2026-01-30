@@ -1,10 +1,10 @@
-import { Drawer, DrawerRoot } from '@/components/Drawer';
+import { Drawer } from '@/components/Drawer';
 import { Footer } from '@/components/Footer/Footer';
 import { Header } from '@/components/Header/Header';
-import { StyleButtonRoot } from '@/components/StyleButton';
+import { DrawerProvider } from '@/contexts/DrawerContext';
+import { ThemeProvider } from '@/contexts/ThemeContext';
 import '@/styles/globals.scss';
 import type { Metadata } from 'next';
-import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,35 +17,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <StyleButtonRoot>
-      <html lang="ja">
-        <Head>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-              (function() {
-                const theme = localStorage.getItem('theme') || 
-                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-                document.documentElement.classList.add(theme);
-                document.documentElement.setAttribute('data-theme', theme);
-              })();
-            `,
-            }}
-          />
-        </Head>
-        <body>
-          {/* スタイルボタンのコンテキストプロバイダーでラップ */}
+    <html lang="ja" suppressHydrationWarning>
+      <body>
+        {/* スタイルボタンのコンテキストプロバイダーでラップ */}
+        <ThemeProvider>
           {/* ドロワーメニューのコンテキストプロバイダーでラップ */}
-          <DrawerRoot>
+          <DrawerProvider>
             <Header />
             <main>
               <div className="container">{children}</div>
             </main>
             <Drawer />
-          </DrawerRoot>
-          <Footer />
-        </body>
-      </html>
-    </StyleButtonRoot>
+          </DrawerProvider>
+        </ThemeProvider>
+        <Footer />
+      </body>
+    </html>
   );
 }

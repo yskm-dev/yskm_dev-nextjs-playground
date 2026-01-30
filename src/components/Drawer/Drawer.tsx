@@ -1,46 +1,10 @@
 'use client';
-import { DrawerContext, useDrawerContext } from '@/contexts/DrawerContext';
+import { useDrawerContext } from '@/contexts/DrawerContext';
 import IconArrow from '@/svg/icon_arrow.svg';
 import IconGithub from '@/svg/icon_github.svg';
 import IconX from '@/svg/icon_x.svg';
-import { useCallback, useRef } from 'react';
 import { StyleButton } from '../StyleButton';
 import styles from './Drawer.module.scss';
-
-// ドロワーメニューのルートコンポーネント
-export function DrawerRoot({ children }: { children: React.ReactNode }) {
-  const dialogRef = useRef<HTMLDialogElement | null>(null);
-
-  const open = useCallback(() => {
-    if (dialogRef.current) {
-      dialogRef.current.showModal();
-    }
-    document.body.style.overflow = 'hidden';
-    document.body.style.touchAction = 'none';
-    document.body.style.top = `-${window.scrollY}px`;
-    document.body.style.left = '0';
-  }, []);
-
-  const close = useCallback(() => {
-    if (dialogRef.current) {
-      dialogRef.current.close();
-      document.body.style.overflow = ``;
-      document.body.style.touchAction = ``;
-      document.body.style.top = ``;
-      document.body.style.left = ``;
-    }
-  }, []);
-
-  const contextValue = {
-    dialogRef: dialogRef,
-    open: open,
-    close: close,
-  };
-
-  // 子コンポーネントにコンテキストを提供
-  // v18まではContext.Providerだったが、v19からはContext自体がProviderになる
-  return <DrawerContext value={contextValue}>{children}</DrawerContext>;
-}
 
 // ドロワーメニュー本体
 export function Drawer() {
