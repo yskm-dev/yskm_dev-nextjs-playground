@@ -46,17 +46,9 @@
   font-weight: 600;
 }
 
-// .menuButton {
-//   display: none;
-// }
-// @include mq-lt("sm") {
-//   .nav {
-//     display: none;
-//   }
-
 .menuButton {
   position: relative;
-  display: block;
+  display: none;
   width: rem(40);
   height: rem(40);
   background-color: var(--color-secondary);
@@ -82,4 +74,12 @@
   }
 }
 
-// }
+@include mq-lt("sm") {
+  .menuButton {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+  }
+}
