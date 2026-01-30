@@ -1,3 +1,4 @@
+import { getMetaData } from '@/constants/sitemap';
 import { getNotes, getNotesDetail, Tag } from '@/libs/microcms';
 import styles from './page.module.scss';
 
@@ -14,6 +15,22 @@ export async function generateStaticParams() {
   return data.contents.map((content) => ({
     id: content.id,
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  // 動的パラメータの取得
+  const { id } = await params;
+  const data = await getNotesDetail(id, {
+    fields: ['title'],
+  });
+  const metaData = await getMetaData(`/notes`);
+  const title = `${data.title} | ${metaData.title}`;
+  metaData.title = metaData.openGraph.title = title;
+  return metaData;
 }
 
 // ページコンポーネント

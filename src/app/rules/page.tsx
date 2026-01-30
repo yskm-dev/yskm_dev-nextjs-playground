@@ -1,7 +1,11 @@
 import { MarginImage } from '@/components/MarginImage';
 import { Pallet } from '@/components/Pallet';
+import { getMetaData } from '@/constants/sitemap';
 import IconArrow from '@/svg/icon_arrow.svg';
+import { Metadata } from 'next';
 import styles from './page.module.scss';
+
+export const metadata: Metadata = getMetaData('/rules');
 
 export default async function Rules() {
   return (

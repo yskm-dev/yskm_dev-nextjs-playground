@@ -1,7 +1,11 @@
 import { EXTERNAL_LINKS } from '@/constants/links';
+import { getMetaData } from '@/constants/sitemap';
 import Icon_Github from '@/svg/icon_github.svg';
 import Icon_X from '@/svg/icon_x.svg';
+import type { Metadata } from 'next';
 import styles from './page.module.scss';
+
+export const metadata: Metadata = getMetaData('/about');
 
 export default async function About() {
   return (

@@ -1,5 +1,6 @@
 import { NoteLink } from '@/components/NoteLink';
 import { Pagination } from '@/components/Pagination';
+import { getMetaData, SITE_NAME } from '@/constants/sitemap';
 import { getNotes } from '@/libs/microcms';
 import styles from './page.module.scss';
 
@@ -20,6 +21,19 @@ export async function generateStaticParams() {
   return Array.from({ length: totalPages }, (_, i) => ({
     page: String(i + 1),
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ page: string }>;
+}) {
+  // 動的パラメータの取得
+  const { page } = await params;
+  const data = getMetaData(`/notes`);
+  const title = `Notes Page${page} | ${SITE_NAME}`;
+  data.title = data.openGraph.title = title;
+  return data;
 }
 
 export default async function Notes({
