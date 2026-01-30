@@ -99,6 +99,8 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       root.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
       setTheme(newTheme);
+
+      document.dispatchEvent(new Event('themeChange'));
     },
     []
   );
