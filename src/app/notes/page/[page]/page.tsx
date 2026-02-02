@@ -1,11 +1,12 @@
 import { NoteLink } from '@/components/NoteLink';
 import { Pagination } from '@/components/Pagination';
+import { NOTES } from '@/constants/notes';
 import { getMetaData, SITE_NAME } from '@/constants/sitemap';
 import { getNotes } from '@/libs/microcms';
 import styles from './page.module.scss';
 
 // ページあたりの表示件
-const ITEMS_PER_PAGE = 1;
+const ITEMS_PER_PAGE = NOTES.limit;
 
 // 静的パス生成
 // App RouterではgetStaticPathsの代わりにgenerateStaticParamsを使用

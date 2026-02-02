@@ -8,7 +8,6 @@ type PageInfo = {
 
 export const SITE_NAME: string = process.env.SITE_NAME || 'My Website';
 export const SITE_URL: string = process.env.SITE_URL || 'http://localhost:3000';
-
 export const SITE_MAP: PageInfo = {
   slug: '',
   title: SITE_NAME,
@@ -129,5 +128,6 @@ export const getMetaData = (path: string) => {
       locale: 'ja_JP',
       type: 'website',
     },
+    robots: '',
   };
 };

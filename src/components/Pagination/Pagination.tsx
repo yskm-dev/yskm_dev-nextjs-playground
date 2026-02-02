@@ -1,3 +1,4 @@
+import { NOTES } from '@/constants/notes';
 import IconNext from '@/svg/icon_next.svg';
 import IconPrev from '@/svg/icon_prev.svg';
 import Link from 'next/link';
@@ -12,7 +13,7 @@ export function Pagination({
   totalPages: number;
   path: string;
 }) {
-  const MAX_PAGE_LINKS = 3; // 最大表示ページ数
+  const MAX_PAGE_LINKS = NOTES.maxPageLinks; // 最大表示ページ数
   const startPage = Math.max(1, currentPage - Math.floor(MAX_PAGE_LINKS / 2));
   const endPage = Math.min(totalPages, startPage + MAX_PAGE_LINKS - 1);
   const urlPrev = 1 < currentPage ? `${path}/${currentPage - 1}` : null;
