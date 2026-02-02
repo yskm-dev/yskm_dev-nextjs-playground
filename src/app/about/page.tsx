@@ -19,7 +19,7 @@ export default async function About() {
       </section>
       <section>
         <h2 className={styles.h2}>著者について</h2>
-        <h3 className={styles.h3}>yskm_dev</h3>
+        <h3 className={styles.h3}>yskm</h3>
         <ul className={styles.social}>
           <li className={styles.socialItem}>
             <Icon_X aria-label="X" />:
