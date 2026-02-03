@@ -1,2 +1,3 @@
 name = "yskm-dev-nextjs-playground"
 compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".open-next/worker"
